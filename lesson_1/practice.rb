@@ -63,3 +63,20 @@ end
 
 p Vanilla::Cake.new.resolve_constant # "Here"
 p Vanilla::Cupcake.new.resolve_constant 
+
+# 7
+def call_me(some_code)
+  some_code.call # call will execute the "chunk of code" that gets passed in
+end
+
+name = "Robert"
+chunk_of_code = Proc.new {puts "hi #{name}"} # 'Proc' object
+
+call_me(chunk_of_code)
+
+# 8
+[1, 2, 3, 4, 5].map(&:to_s).map(&:to_i) # => [1, 2, 3, 4, 5]
+
+["hello", "world"].each(&:upcase!) # => ["HELLO", "WORLD"]
+[1, 2, 3, 4, 5].select(&:odd?) # => [1, 3, 5]
+[1, 2, 3, 4, 5].select(&:odd?).any?(&:even?) # => false
