@@ -111,6 +111,31 @@ class TodoList
     text << todos.map(&:to_s).join("\n")
     text
   end
+
+  def each
+    size.times do |index_counter|
+      yield(todos[index_counter])
+    end
+
+    self
+  end
+
+  def select
+    result = TodoList.new(title)
+
+    self.each do |todo|
+      result << todo if yield(todo)
+    end
+
+    result
+  end
+end
+
+# Alternate for TodoList#each
+def each
+  @todos.each do |todo|
+    yield(todo)
+  end
 end
 
 todo1 = Todo.new("Buy milk")
@@ -122,12 +147,8 @@ list.add(todo1)
 list.add(todo2)
 list.add(todo3)
 
-puts list
+todo1.done!
 
-list.pop
+results = list.select { |todo| todo.done? }    # you need to implement this method
 
-puts list
-
-list.mark_done_at(1)
-
-puts list
+puts results.inspect
