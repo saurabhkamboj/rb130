@@ -129,6 +129,41 @@ class TodoList
 
     result
   end
+
+  # takes a string as argument, and returns the
+  # first Todo object that matches the argument.
+  # Return nil if no todo is found.
+  def find_by_title(string)
+    select { |todo| todo.title == string }.first
+  end
+
+  # returns new TodoList object containing only
+  # the done items.
+  def all_done
+    select { |todo| todo.done? }
+  end
+
+  # returns new TodoList object containing only
+  # the not done items
+  def all_not_done
+    select { |todo| todo.done? == false }
+  end
+
+  # takes a string as argument, and marks the first
+  # Todo object that matches the argument as done.
+  def mark_done(string)
+    find_by_title(string) && find_by_title(string).done!
+  end
+
+  # mark every todo as done
+  def mark_all_done
+    each { |todo| todo.done! }
+  end
+
+  # mark every todo as not done
+  def mark_all_undone
+    each { |todo| todo.undone! }
+  end
 end
 
 # Alternate for TodoList#each
@@ -149,6 +184,6 @@ list.add(todo3)
 
 todo1.done!
 
-results = list.select { |todo| todo.done? }    # you need to implement this method
-
-puts results.inspect
+p list.find_by_title('A title')
+p list.all_done
+p list.all_not_done
