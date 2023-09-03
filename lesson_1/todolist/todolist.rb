@@ -187,3 +187,4 @@ todo1.done!
 p list.find_by_title('A title')
 p list.all_done
 p list.all_not_done
+puts list
