@@ -167,11 +167,11 @@ class TodoList
 end
 
 # Alternate for TodoList#each
-def each
-  @todos.each do |todo|
-    yield(todo)
-  end
-end
+# def each
+#   @todos.each do |todo|
+#     yield(todo)
+#   end
+# end
 
 todo1 = Todo.new("Buy milk")
 todo2 = Todo.new("Clean room")

@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'minitest/autorun'
 require "minitest/reporters"
 Minitest::Reporters.use!
@@ -78,6 +81,11 @@ class TodoListTest < Minitest::Test
   def test_item_at
     assert_raises(IndexError) { @list.item_at(4) }
     assert_equal(@todo1, @list.item_at(0))
+  end
+
+  def test_mark_done
+    @list.mark_done("Buy milk")
+    assert_equal(true, @list.find_by_title("Buy milk").done?)
   end
 
   def test_mark_done_at
