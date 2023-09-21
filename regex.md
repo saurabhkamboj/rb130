@@ -32,3 +32,10 @@
 - `\z` and `\Z` anchors match regex at the end of the string.
   - `\Z` matches upto but not including the the new line at the end of the stirng.
 - `\b` matches regex to word boundaries and `\B` to non-word boundaries.
+
+- '*' is called a quantifier. Used to match zero or more occurrences of character to the left of it.
+  - For example; `/ae*d/` will look for combination of characters that include 'a', 'd', and zero or more 'e'.
+- Similarly '+' is used to match one or more occurrences.
+- '?' is used to match zero or one occurences.
+- For range append `{}` to the pattern and mention the range within it.
+  - For example; `/\b[a-z]{3,6}\b/i` matches all words that are 3 to 6 characters long.
