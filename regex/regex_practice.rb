@@ -13,8 +13,8 @@ fields = record.split(/\s+/)
 
 # Capture group
 /(['"]).+?\1/ 
-# This sequence is called backreference, it references
-# the first group in the sequence.
+# This sequence is called backreference, it 
+# references the first group in the sequence.
 
 # Can also use
 if text.match(/".*?"/) || text.match(/'.*?'/)
@@ -22,6 +22,10 @@ if text.match(/".*?"/) || text.match(/'.*?'/)
 end
 
 # Transformations
+text = %(We read "War of the Worlds".)
+puts text.sub(/(['"]).+\1/, '\1The Time Machine\1')
+# prints: We read "The Time Machine".
+
 # To mask an email ID
 def mask_email(email)
   parts = email.split('@')
@@ -32,7 +36,3 @@ end
 # Example usage:
 email = "john.doe@example.com"
 puts mask_email(email)
-
-text = %(We read "War of the Worlds".)
-puts text.sub(/(['"]).+\1/, '\1The Time Machine\1')
-# prints: We read "The Time Machine".
