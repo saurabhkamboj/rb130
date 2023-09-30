@@ -74,7 +74,7 @@ p danish('I love pineapple')
 # 6. Challenge: write a method that changes strings in the date format 2016-06-17 to the format 17.06.2016. You must use a regular expression and should use methods described in this section.
 
 def format_date(date)
-  return date unless date.match?(/\-/)
+  return date unless date.match?(/\-/) # Can also use `date.count('-') == 2`
   date_parts = date.split(/\-/)
   date_parts.reverse.join('.')
 end
