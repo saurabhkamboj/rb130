@@ -74,7 +74,7 @@ class TodoListTest < Minitest::Test
     new_todo = Todo.new("Buy Kaashi ka Assi")
     @todos << new_todo
     @list.add(new_todo)
-  
+
     assert_equal(@todos, @list.to_a)
   end
 
@@ -168,5 +168,18 @@ class TodoListTest < Minitest::Test
     test_array = @list.select { |todo| todo.done? }
 
     assert_equal([@todo1], test_array.to_a)
+  end
+
+  def test_map
+    @list.mark_all_done
+    test_array = @list.map(&:done?)
+
+    assert_equal(true, test_array.all?(true))
+  end
+
+  def test_mark_all_undone
+    @list.mark_all_undone
+
+    assert_equal(true, @list.map(&:done?).all?(false))
   end
 end

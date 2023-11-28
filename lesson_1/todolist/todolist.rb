@@ -130,6 +130,12 @@ class TodoList
     result
   end
 
+  def map
+    to_a.each_with_object([]) do |todo, result|
+      result.push(yield(todo))
+    end
+  end
+
   # takes a string as argument, and returns the
   # first Todo object that matches the argument.
   # Return nil if no todo is found.
@@ -184,7 +190,7 @@ list.add(todo3)
 
 todo1.done!
 
-p list.find_by_title('A title')
+p list.find_by_title('Buy milk')
 p list.all_done
 p list.all_not_done
 puts list
